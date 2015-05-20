@@ -264,3 +264,12 @@
 
 (boldify-names)
 
+
+;; replace all true to false and false to true in the same buffer
+(defun replace-true-false ()
+  (interactive)
+  (save-excursion (goto-char (point-min))
+                  (while (re-search-forward "true\\|false" nil 't)
+                    (if (string-equal (match-string 0) "true")
+                        (replace-match "false")
+                      (replace-match "true")))))
